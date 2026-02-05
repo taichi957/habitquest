@@ -9,21 +9,13 @@ export default defineConfig({
       registerType: 'autoUpdate',
 
       workbox: {
-        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // ✅ INCREASE TO 4MB
-        runtimeCaching: [
-          {
-            urlPattern: /\.png$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'image-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
-              }
-            }
-          }
-        ]
-      },
+    globIgnores: [
+      '**/*.png',
+      '**/*.jpg',
+      '**/*.jpeg',
+      '**/*.webp'
+    ]
+  },
 
       manifest: {
         name: 'HabitQuest',
