@@ -9,7 +9,20 @@ export default defineConfig({
       registerType: 'autoUpdate',
 
       workbox: {
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024 // 5MB
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // ✅ INCREASE TO 4MB
+        runtimeCaching: [
+          {
+            urlPattern: /\.png$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+              }
+            }
+          }
+        ]
       },
 
       manifest: {
@@ -20,18 +33,17 @@ export default defineConfig({
         background_color: '#020617',
         theme_color: '#1e293b',
         icons: [
-  {
-    src: '/icon-192.png',
-    sizes: '192x192',
-    type: 'image/png'
-  },
-  {
-    src: '/icon-512.png',
-    sizes: '512x512',
-    type: 'image/png'
-  }
-]
-
+          {
+            src: '/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
       }
     })
   ]
