@@ -1,0 +1,79 @@
+
+.hp-bar {
+  position: relative;
+  height: 16px;
+  background: #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4d4d, #ff7676);
+  transition: width 0.4s ease;
+}
+
+/* ✨ HEAL EFFECT */
+.hp-bar.healing .hp-fill {
+  animation: heal-glow 0.8s ease-out;
+}
+
+@keyframes heal-glow {
+  0% {
+    box-shadow: 0 0 0px #4cff4c;
+  }
+  50% {
+    box-shadow: 0 0 12px #4cff4c;
+  }
+  100% {
+    box-shadow: 0 0 0px transparent;
+  }
+}
+
+.heal-float {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  color: #4cff4c;
+  font-weight: bold;
+  animation: float-up 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes float-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.heal-animate .bar-fill {
+  animation: healPulse 0.6s ease-out;
+}
+
+@keyframes healPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 255, 0, 0);
+  }
+}
+.damage-animate .bar-fill {
+  animation: damageShake 0.3s ease-in-out;
+  background-color: #f44336 !important;
+}
+
+@keyframes damageShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
