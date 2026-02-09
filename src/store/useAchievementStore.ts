@@ -85,12 +85,10 @@ export const useAchievementStore = create<AchievementState>()(
       },
 
       // ===== RESET ALL ACHIEVEMENTS =====
-      resetAchievements: () => {
-        localStorage.removeItem("habitquest-achievements");
+      resetAchievements: () =>
         set(() => ({
           achievements: initialAchievements,
-        }));
-      },
+        })),
     }),
     {
       name: "habitquest-achievements",
