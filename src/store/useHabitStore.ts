@@ -86,10 +86,12 @@ export const useHabitStore = create<HabitState>()(
         })),
 
       // ===== RESET ALL HABITS (IMPORTANT) =====
-      resetHabits: () =>
-        set(() => ({
+      resetHabits: () => {
+        localStorage.removeItem("habitquest-storage");
+        return set(() => ({
           habits: [],
-        })),
+        }));
+      },
     }),
     {
       name: "habitquest-storage",

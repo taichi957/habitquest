@@ -24,11 +24,13 @@ export const useTimeStore = create<TimeState>()(
         }
       },
 
-resetTime: (today: string) =>
-  set({
+resetTime: (today: string) => {
+  localStorage.removeItem("habitquest-time");
+  return set({
     currentDay: 1,
     lastDate: today,
-  }),
+  });
+},
 
     }),
     {

@@ -31,11 +31,13 @@ export const useBackgroundStore = create<BackgroundState>()(
         }
       },
 
-      resetBackgrounds: () =>
-        set({
+      resetBackgrounds: () => {
+        localStorage.removeItem("habitquest-backgrounds");
+        return set({
           unlockedBackgroundIds: ["bg1"],
           selectedBackground: bg1,
-        }),
+        });
+      },
     }),
     {
       name: "habitquest-backgrounds",

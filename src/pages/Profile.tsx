@@ -421,7 +421,7 @@ export default function Profile() {
 
           const today = await fetchServerDate();
 
-          // ✅ RESET ALL STORES
+          // ✅ RESET ALL STORES (mỗi store tự xóa localStorage của nó)
           resetPlayer();
           resetHabits();
           resetAchievements();
@@ -431,25 +431,6 @@ export default function Profile() {
           resetLogs();
           resetShop();
           resetTime(today);
-
-          // ✅ CLEAR ALL LOCALSTORAGE
-          const storageKeys = [
-            "habitquest-player",
-            "habitquest-storage",
-            "habitquest-achievements",
-            "habitquest-avatars",
-            "habitquest-backgrounds",
-            "habitquest-pets",
-            "habitquest-victory-log",
-            "habitquest-shop-v12",
-            "habitquest-time",
-            "habitquest-sound",
-            "habitquest-language",
-          ];
-
-          storageKeys.forEach((key) => {
-            localStorage.removeItem(key);
-          });
 
           // ✅ RELOAD PAGE
           window.location.reload();

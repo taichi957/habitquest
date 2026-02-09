@@ -257,8 +257,9 @@ revive: () =>
         })),
 
       /* ================= RESET ================= */
-            resetPlayer: () =>
-        set(() => ({
+      resetPlayer: () => {
+        localStorage.removeItem("habitquest-player");
+        return set(() => ({
           dayLocked: false,
           isHealing: false,
           isDamaged: false,
@@ -273,7 +274,8 @@ revive: () =>
             gold: 0,
             avatar: avatar1,
           },
-        })),
+        }));
+      },
 
     }),
     {
