@@ -30,13 +30,11 @@ export const usePetStore = create<PetState>()(
         }
       },
 
-      resetPets: () => {
-        localStorage.removeItem("habitquest-pets");
+      resetPets: () =>
         set({
           unlockedPetIds: ["none"],
           selectedPet: "",
-        });
-      },
+        }),
     }),
     {
       name: "habitquest-pets",

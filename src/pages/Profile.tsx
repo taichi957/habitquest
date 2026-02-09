@@ -13,10 +13,11 @@ import { useSoundStore } from "../store/useSoundStore";
 import { useVictoryLogStore } from "../store/useVictoryLogStore";
 import { useLanguageStore, type Language } from "../store/useLanguageStore";
 import { useTranslation } from "../hooks/useTranslation";
-import { useBackgroundStore } from "../store/useBackgroundStore"; // ✅ NEW
-import { BACKGROUNDS } from "../data/backgrounds"; // ✅ NEW
-import { usePetStore } from "../store/usePetStore"; // ✅ NEW
-import { PETS, type Pet } from "../data/pets"; // ✅ NEW - ADD TYPE
+import { useBackgroundStore } from "../store/useBackgroundStore";
+import { BACKGROUNDS } from "../data/backgrounds";
+import { usePetStore } from "../store/usePetStore";
+import { PETS, type Pet } from "../data/pets";
+import { resetAllStorage } from "../utils/resetStorage"; // ✅ NEW IMPORT
 
 import avatar1 from "../assets/avatar1.png";
 import avatar2 from "../assets/avatar2.png";
@@ -421,7 +422,7 @@ export default function Profile() {
 
           const today = await fetchServerDate();
 
-          // ✅ RESET ALL STORES (mỗi store tự xóa localStorage của nó)
+          // ✅ 1️⃣ RESET ALL STORES
           resetPlayer();
           resetHabits();
           resetAchievements();
@@ -432,8 +433,13 @@ export default function Profile() {
           resetShop();
           resetTime(today);
 
-          // ✅ RELOAD PAGE
-          window.location.reload();
+          // ✅ 2️⃣ XÓA HẾT STORAGE
+          await resetAllStorage();
+
+          // ✅ 3️⃣ WAIT 500MS THEN RELOAD
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 500);
         }}
       >
         {t("profile.resetProgress")}

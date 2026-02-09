@@ -168,13 +168,11 @@ export const useShopStore = create<ShopState>()(
       },
 
       /* ===== RESET SHOP ===== */
-      resetShop: () => {
-        localStorage.removeItem("habitquest-shop-v12");
+      resetShop: () =>
         set({
           ownedItemIds: [],
           consumableQuantity: {},
-        });
-      },
+        }),
     }),
     {
       name: "habitquest-shop-v12",

@@ -63,12 +63,10 @@ export const useVictoryLogStore = create<VictoryLogState>()(
           logs: state.logs.filter((log) => log.id !== id),
         })),
 
-      resetLogs: () => {
-        localStorage.removeItem("habitquest-victory-log");
+      resetLogs: () =>
         set({
           logs: [],
-        });
-      },
+        }),
     }),
     {
       name: "habitquest-victory-log",
