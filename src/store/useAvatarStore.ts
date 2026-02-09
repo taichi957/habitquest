@@ -20,7 +20,7 @@ export const useAvatarStore = create<AvatarState>()(
 
       resetAvatars: () => {
         localStorage.removeItem("habitquest-avatars");
-        return set({
+        set({
           unlockedAvatarIds: ["avatar1"],
         });
       },

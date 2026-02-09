@@ -259,7 +259,7 @@ revive: () =>
       /* ================= RESET ================= */
       resetPlayer: () => {
         localStorage.removeItem("habitquest-player");
-        return set(() => ({
+        set(() => ({
           dayLocked: false,
           isHealing: false,
           isDamaged: false,
