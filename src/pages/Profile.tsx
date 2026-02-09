@@ -422,10 +422,10 @@ export default function Profile() {
           const today = await fetchServerDate();
 
           resetPlayer();
-          resetHabits();
+          resetHabits(); // ✅ CHANGE: resetToday() → resetHabits()
           resetAchievements();
           resetAvatars();
-          resetPets(); // ✅ ADD THIS
+          resetPets();
           resetBackgrounds();
           resetLogs();
           resetShop();
