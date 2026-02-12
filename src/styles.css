@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap");
+
 
 /* ================= ROOT ================= */
 :root {
@@ -13,6 +15,7 @@
   --hp: #6dbb63;
   --exp: #4aa3df;
   --pixel: "Press Start 2P", cursive;
+  --font-vi: "Be Vietnam Pro", sans-serif;
   --noto-ja: "Noto Sans JP", sans-serif;
 }
 * {
@@ -23,6 +26,8 @@
 body {
   margin: 0;
   font-family: var(--pixel);
+  :lang(vi) {font-family: var(--font-vi);}
+  :lang(ja) {font-family: var(--noto-ja);}
   background: radial-gradient(circle, #fff3d6, var(--bg-main));
   color: var(--text-main);
   min-height: 100vh;
@@ -463,12 +468,7 @@ body {
   opacity: 0.8;
 }
 
-.avatar-select {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin: 10px 0;
-}
+/* ================= AVATAR SELECTION ================= */
 
 .avatar-slot {
   position: relative;
@@ -1329,4 +1329,4 @@ a {
 [lang="ja"] div.shop-item button {
   font-size: 12px;
 }
-
+  

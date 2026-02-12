@@ -11,7 +11,7 @@ export async function resetAllStorage() {
     "habitquest-backgrounds",
     "habitquest-pets",
     "habitquest-victory-log",
-    "habitquest-shop-v12",
+    "habitquest-shop-v13",
     "habitquest-time",
     "habitquest-sound",
     "habitquest-language",

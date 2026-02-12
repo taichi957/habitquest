@@ -167,39 +167,39 @@ export const translations = {
     // ===== ITEMS =====
     items: {
       expBoost: {
-        name: "📘 EXP Boost",
+        name: "EXP Boost",
         description: "+20% EXP per habit",
       },
       goldBoost: {
-        name: "💰 Gold Rush",
+        name: "Gold Rush",
         description: "+30% Gold per habit",
       },
       hpBoost: {
-        name: "❤️ Vitality",
+        name: "Vitality",
         description: "+50 Max HP",
       },
       shield: {
-        name: "🛡️ Shield",
+        name: "Shield",
         description: "50% reduce delete damage",
       },
       barrier: {
-        name: "🔷 Barrier",
+        name: "Barrier",
         description: "75% reduce delete damage",
       },
       healPotion: {
-        name: "🧪 Heal Potion",
+        name: "Heal Potion",
         description: "Restore 30 HP",
       },
       megaPotion: {
-        name: "🧬 Mega Potion",
+        name: "Mega Potion",
         description: "Restore 60 HP",
       },
       reviveScroll: {
-        name: "💊 Revive Scroll",
+        name: "Revive Scroll",
         description: "Revive when dead",
       },
       streakElixir: {
-        name: "⚗️ Streak Elixir",
+        name: "Streak Elixir",
         description: "+1 Streak (any habit)",
       },
     },
@@ -420,39 +420,39 @@ export const translations = {
     // ===== ITEMS =====
     items: {
       expBoost: {
-        name: "📘EXP Boost",
+        name: "EXP Boost",
         description: "+20% EXP mỗi thói quen",
       },
       goldBoost: {
-        name: "💰 Gold Rush",
+        name: "Gold Rush",
         description: "+30% Vàng mỗi thói quen",
       },
       hpBoost: {
-        name: "❤️ Vitality",
+        name: "Vitality",
         description: "+50 HP Tối Đa",
       },
       shield: {
-        name: "🛡️ Shield",
+        name: "Shield",
         description: "Giảm 50% sát thương khi xóa",
       },
       barrier: {
-        name: "🔷 Barrier",
+        name: "Barrier",
         description: "Giảm 75% sát thương khi xóa",
       },
       healPotion: {
-        name: "🧪 Heal Potion",
+        name: "Heal Potion",
         description: "Hồi 30 HP",
       },
       megaPotion: {
-        name: "🧬 Mega Potion",
+        name: "Mega Potion",
         description: "Hồi 60 HP",
       },
       reviveScroll: {
-        name: "💊 Revive Scroll",
+        name: "Revive Scroll",
         description: "Hồi sinh khi chết",
       },
       streakElixir: {
-        name: "⚗️ Streak Elixir",
+        name: "Streak Elixir",
         description: "+1 Streak (bất kỳ thói quen)",
       },
     },
@@ -674,39 +674,39 @@ export const translations = {
     // ===== ITEMS =====
     items: {
       expBoost: {
-        name: "📘 EXP Boost",
+        name: "EXP Boost",
         description: "習慣ごとに+20%EXP",
       },
       goldBoost: {
-        name: "💰 Gold Rush",
+        name: "Gold Rush",
         description: "習慣ごとに+30%ゴールド",
       },
       hpBoost: {
-        name: "❤️ Vitality",
+        name: "Vitality",
         description: "+50最大 HP",
       },
       shield: {
-        name: "🛡️ Shield",
+        name: "Shield",
         description: "削除ダメージを50%減少",
       },
       barrier: {
-        name: "🔷 Barrier",
+        name: "Barrier",
         description: "削除ダメージを75%減少",
       },
       healPotion: {
-        name: "🧪 Heal Potion",
+        name: "Heal Potion",
         description: "30Hpを回復",
       },
       megaPotion: {
-        name: "🧬 Mega Potion",
+        name: "Mega Potion",
         description: "60Hpを回復",
       },
       reviveScroll: {
-        name: "💊 Revive Scroll",
+        name: "Revive Scroll",
         description: "死亡時に復活",
       },
       streakElixir: {
-        name: "⚗️ Streak Elixir",
+        name: "Streak Elixir",
         description: "+1ストリーク (任意の習慣)",
       },
     },

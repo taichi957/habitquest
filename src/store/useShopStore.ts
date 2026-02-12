@@ -25,7 +25,7 @@ export const useShopStore = create<ShopState>()(
         // 📘 BUFF ITEMS (1 lần)
         {
           id: "exp_boost",
-          name: "📘 EXP Boost",
+          name: "EXP Boost",
           description: "+20% EXP per habit",
           price: 100,
           icon: "📘",
@@ -34,7 +34,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "gold_boost",
-          name: "💰 Gold Rush",
+          name: "Gold Rush",
           description: "+30% Gold per habit",
           price: 80,
           icon: "💰",
@@ -43,7 +43,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "hp_boost",
-          name: "❤️ Vitality",
+          name: "Vitality",
           description: "+50 Max HP",
           price: 150,
           icon: "❤️",
@@ -54,7 +54,7 @@ export const useShopStore = create<ShopState>()(
         // 🛡️ PASSIVE ITEMS (1 lần)
         {
           id: "shield",
-          name: "🛡️ Shield",
+          name: "Shield",
           description: "50% reduce delete damage",
           price: 80,
           icon: "🛡️",
@@ -63,7 +63,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "barrier",
-          name: "🔷 Barrier",
+          name: "Barrier",
           description: "75% reduce delete damage",
           price: 150,
           icon: "🔷",
@@ -74,7 +74,7 @@ export const useShopStore = create<ShopState>()(
         // 🧪 CONSUMABLE ITEMS (nhiều lần)
         {
           id: "heal_potion",
-          name: "🧪 Heal Potion",
+          name: "Heal Potion",
           description: "Restore 30 HP",
           price: 50,
           icon: "🧪",
@@ -83,7 +83,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "mega_potion",
-          name: "🧬 Mega Potion",
+          name: "Mega Potion",
           description: "Restore 60 HP",
           price: 100,
           icon: "🧬",
@@ -92,7 +92,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "revive_scroll",
-          name: "💊 Revive Scroll",
+          name: "Revive Scroll",
           description: "Revive when dead",
           price: 120,
           icon: "💊",
@@ -101,7 +101,7 @@ export const useShopStore = create<ShopState>()(
         },
         {
           id: "streak_elixir",
-          name: "⚗️ Streak Elixir",
+          name: "Streak Elixir",
           description: "+1 Streak (any habit)",
           price: 90,
           icon: "⚗️",
@@ -175,7 +175,7 @@ export const useShopStore = create<ShopState>()(
         }),
     }),
     {
-      name: "habitquest-shop-v12",
+      name: "habitquest-shop-v13",
     }
   )
 );
