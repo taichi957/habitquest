@@ -11,7 +11,7 @@ import Profile from "./pages/Profile";
 import Store from "./pages/Store";
 import Motivation from "./pages/Motivation";
 import VictoryLog from "./pages/VictoryLog";
-import Start from "./pages/Start"; // ✅ NEW
+import Start from "./pages/Start"; 
 
 export default function App() {
   const soundEnabled = useSoundStore((s) => s.enabled);
