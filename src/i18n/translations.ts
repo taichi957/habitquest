@@ -247,7 +247,7 @@ export const translations = {
     },
     // Start Page
     start: {
-      welcome: "Welcome to Habigo!",
+      welcome: "Welcome to HabitQuest!",
       description: "Embark on your journey to build better habits. Track your progress, level up, and conquer your goals!",
       startButton: "Start Adventure",
       settings: "Settings", // ✅ NEW
@@ -501,7 +501,7 @@ export const translations = {
     },
     // Start Page
     start: {
-      welcome: "Chào mừng đến với Habigo!",
+      welcome: "Chào mừng đến với HabitQuest!",
       description: "Bắt đầu hành trình xây dựng thói quen tốt. Theo dõi tiến độ, lên cấp và chinh phục mục tiêu!",
       startButton: "Bắt Đầu",
       settings: "Cài Đặt", // ✅ NEW
@@ -755,7 +755,7 @@ export const translations = {
     },
     // Start Page
     start: {
-      welcome: "Habigoへようこそ！",
+      welcome: "HabitQuestへようこそ！",
       description: "良い習慣を築く旅を始めましょう。進捗を追跡し、レベルアップして目標を達成しましょう！",
       startButton: "冒険を開始",
       settings: "設定", // ✅ NEW

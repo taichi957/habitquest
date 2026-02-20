@@ -23,7 +23,7 @@ export default function Start({ onStart }: Props) {
   return (
     <PhoneFrame>
       <div className="page-card">
-        <h2 className="page-title">Habigo</h2>
+        <h2 className="page-title">HabitQuest</h2>
         
         <div style={{ textAlign: "center", padding: "40px 20px" }}>
           <div style={{ fontSize: "60px", marginBottom: "20px" }}>
