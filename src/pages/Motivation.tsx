@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import PhoneFrame from "../components/PhoneFrame";
 import { usePlayerStore } from "../store/usePlayerStore";
 import { useHabitStore } from "../store/useHabitStore";
@@ -22,8 +22,14 @@ export default function Motivation() {
 
   // 💬 MOTIVATIONAL QUOTES (✅ FROM TRANSLATIONS)
   const lang = useLanguageStore((s) => s.language);
-  const quotes = translations[lang].quotes; // ✅ FIXED
-  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  
+  // ✅ USE MEMO TO REACTIVELY UPDATE QUOTES WHEN LANGUAGE CHANGES
+  const { tipList, randomQuote } = useMemo(() => {
+    const quotesList = translations[lang].quotes;
+    const tipList = translations[lang].motivation.tipList;
+    const randomQuote = quotesList[Math.floor(Math.random() * quotesList.length)];
+    return { tipList, randomQuote };
+  }, [lang]); // ✅ DEPENDENCY ON LANGUAGE
 
   // 🌐 API QUOTE
   const [apiQuote] = useState<string>("");
@@ -47,7 +53,6 @@ export default function Motivation() {
   }, [habits, checkAchievements]);
 
   const displayQuote = apiQuote || randomQuote;
-  const tipList = translations[lang].motivation.tipList;
 
   const achievementPercentage = Math.round(
     (unlockedAchievements / achievements.length) * 100

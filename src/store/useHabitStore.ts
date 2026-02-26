@@ -1,16 +1,14 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { Habit } from "../types/habit";
+import { detectVerificationType, initializeVerificationConfig } from "../utils/verificationSystem";
+import { getSeedHabits } from "../data/seedHabits";
 
 type HabitState = {
   habits: Habit[];
 
-  addHabit: (data: {
-    title: string;
-    color: string;
-    badgeId?: string;
-    badgeName?: string;
-  }) => void;
+  addHabit: (data: Partial<Habit>) => void;
+  updateHabit: (id: string, data: Partial<Habit>) => void; // ✅ NEW
 
   toggleComplete: (id: string) => void;
   removeHabit: (id: string) => void;
@@ -22,27 +20,57 @@ type HabitState = {
 export const useHabitStore = create<HabitState>()(
   persist(
     (set) => ({
-      habits: [],
+      // 🎮 LOAD SEED DATA for first time users
+      habits: getSeedHabits(),
 
       // ===== ADD HABIT =====
       addHabit: (data) =>
-        set((state) => ({
-          habits: [
-            ...state.habits,
-            {
-              id: crypto.randomUUID(),
-              title: data.title,
-              color: data.color,
+        set((state) => {
+          // 🤖 AUTO-DETECT VERIFICATION TYPE
+          const verificationType =
+            data.verificationType ||
+            detectVerificationType(data.title || "", data.description);
 
-              badgeId: data.badgeId,
-              badgeName: data.badgeName,
+          // 🎛️ INITIALIZE VERIFICATION CONFIG
+          const verificationConfig =
+            data.verificationConfig ||
+            initializeVerificationConfig(verificationType, data.title);
 
-              completedToday: false,
-              streak: 0,
-              createdAt: new Date().toISOString(),
-            },
-          ],
-        })),
+          return {
+            habits: [
+              ...state.habits,
+              {
+                id: crypto.randomUUID(),
+                title: data.title || "",
+                description: data.description,
+                color: data.color || "#FFD76E",
+                icon: data.icon,
+                completedToday: false,
+                streak: 0,
+                badge: data.badge,
+                badgeName: data.badgeName,
+                expReward: data.expReward || 50,
+                coinReward: data.coinReward || 10,
+                schedule: data.schedule,
+                goal: data.goal,
+                reminder: data.reminder,
+                completionRate: 0,
+                totalCompleted: 0,
+                difficulty: data.difficulty || "easy",
+                priority: data.priority || "medium",
+                energyCost: data.energyCost || 5,
+                notes: data.notes,
+                moodTrack: data.moodTrack,
+                canShare: data.canShare ?? false,
+                isGroupChallenge: data.isGroupChallenge ?? false,
+                createdAt: new Date().toISOString(),
+                // 🎮 VERIFICATION SYSTEM
+                verificationType,
+                verificationConfig,
+              },
+            ],
+          };
+        }),
 
       // ===== TOGGLE COMPLETE =====
       toggleComplete: (id) =>
@@ -57,6 +85,14 @@ export const useHabitStore = create<HabitState>()(
                     : Math.max(0, h.streak - 1),
                 }
               : h
+          ),
+        })),
+
+      // ===== UPDATE HABIT (for verification config updates) =====
+      updateHabit: (id, data) =>
+        set((state) => ({
+          habits: state.habits.map((h) =>
+            h.id === id ? { ...h, ...data } : h
           ),
         })),
 

@@ -6,12 +6,14 @@ import { useSoundStore } from "./store/useSoundStore";
 import { useLanguageStore } from "./store/useLanguageStore";
 
 import Home from "./pages/Home";
-import AddHabit from "./pages/AddHabit";
+import AddHabitNew from "./pages/AddHabitNew";
+import HabitDetail from "./pages/HabitDetail";
 import Profile from "./pages/Profile";
 import Store from "./pages/Store";
 import Motivation from "./pages/Motivation";
 import VictoryLog from "./pages/VictoryLog";
 import Start from "./pages/Start"; 
+import NotificationList from "./components/NotificationList.tsx"; 
 
 export default function App() {
   const soundEnabled = useSoundStore((s) => s.enabled);
@@ -54,12 +56,16 @@ export default function App() {
     <div className="app-shell" lang={language}> {/* ✅ ADD LANG ATTRIBUTE */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddHabit />} />
+        <Route path="/add" element={<AddHabitNew />} />
+        <Route path="/habit/:id" element={<HabitDetail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/store" element={<Store />} />
         <Route path="/motivation" element={<Motivation />} />
         <Route path="/victory-log" element={<VictoryLog />} />
       </Routes>
+
+      {/* notification toasts */}
+      <NotificationList />
 
       {/* 🔽 BOTTOM NAVIGATION */}
       <nav className="bottom-nav">

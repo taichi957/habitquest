@@ -22,6 +22,11 @@ export const translations = {
     habit: {
       done: "✅ Done",
       pending: "⬜ Pending",
+      verification: "Verification",
+      difficulty: "Difficulty",
+      reminder: "Reminder",
+      days: "Days",
+      delete: "Delete habit",
       deleteConfirm: "Delete \"{title}\"?\nPenalty: {damage} HP{shield}",
       shieldActive: " (Shield active)",
     },
@@ -52,9 +57,41 @@ export const translations = {
     // Add Habit
     addHabit: {
       title: "Add Habit",
-      habitName: "Habit name",
-      badge: "✨ Achievement Badge",
+      basicInfo: "Basic Information",
+      habitName: "Habit Name",
+      habitNamePlaceholder: "e.g., Drink water, Study Japanese",
+      description: "Description",
+      descriptionPlaceholder: "Detailed goal or notes...",
+      icon: "Icon",
+      color: "Color",
+      schedule: "Schedule",
+      daysOfWeek: "Days of Week",
+      frequency: "Frequency",
+      timesPerDay: "Times Per Day",
+      specificTime: "Specific Time",
+      goal: "Goal",
+      goalType: "Goal Type",
+      target: "Target Number",
+      unit: "Unit",
+      reminder: "Reminder",
+      enableReminder: "Enable Reminder",
+      reminderTime: "Reminder Time",
+      reminderSound: "Reminder Sound",
+      repeatIfIncomplete: "Repeat if Incomplete",
+      gamification: "Gamification",
+      expReward: "EXP Reward",
+      coinReward: "Gold Reward",
+      badge: "Achievement Badge",
+      advanced: "Advanced Settings",
+      difficulty: "Difficulty",
+      priority: "Priority",
+      energyCost: "Energy Cost",
+      notes: "Notes",
+      notesPlaceholder: "Add a note...",
+      canShare: "Can Share with Friends",
+      unlockedAt: "Unlock at streak:",
       saveHabit: "Save Habit",
+      cancel: "Cancel",
       enterName: "Please enter a habit name",
     },
     // Store
@@ -245,12 +282,51 @@ export const translations = {
         effect: "+1 Level Instant",
       },
     },
+    // Verification System
+    verification: {
+      title: "Verification Method",
+      autoDetected: "System automatically detected:",
+      changeType: "Change verification method:",
+      tap: {
+        description: "Simple tap to complete",
+      },
+      timer: {
+        description: "Complete within time limit",
+      },
+      checklist: {
+        description: "Complete multi-step checklist",
+      },
+      proof: {
+        description: "Upload proof of completion",
+        placeholder: "Enter proof or upload photo",
+      },
+      sensor: {
+        description: "Track via sensor (steps, etc)",
+      },
+      auto: {
+        description: "Auto-detect method",
+      },
+    },
     // Start Page
     start: {
+      title: "HabitQuest",
       welcome: "Welcome to HabitQuest!",
       description: "Embark on your journey to build better habits. Track your progress, level up, and conquer your goals!",
       startButton: "Start Adventure",
       settings: "Settings", // ✅ NEW
+    },
+    // Player Status
+    playerStatus: {
+      level: "Lv.",
+      gold: "Gold",
+      hp: "HP",
+      exp: "EXP",
+      day: "Day",
+    },
+    // Achievements Page
+    achievementsPage: {
+      title: "Achievements",
+      locked: "🔒",
     },
   },
 
@@ -275,6 +351,11 @@ export const translations = {
     habit: {
       done: "✅ Hoàn Thành",
       pending: "⬜ Chưa Làm",
+      verification: "Xác minh",
+      difficulty: "Độ khó",
+      reminder: "Nhắc nhở",
+      days: "Ngày",
+      delete: "Xóa thói quen",
       deleteConfirm: "Xóa \"{title}\"?\nPhạt: {damage} HP{shield}",
       shieldActive: " (Lá chắn hoạt động)",
     },
@@ -305,9 +386,41 @@ export const translations = {
     // Add Habit
     addHabit: {
       title: "Thêm Thói Quen",
-      habitName: "Tên thói quen",
-      badge: "✨ Huy Hiệu Thành Tích",
+      basicInfo: "Thông Tin Cơ Bản",
+      habitName: "Tên Thói Quen",
+      habitNamePlaceholder: "VD: Uống nước, Học tiếng Nhật",
+      description: "Mô Tả",
+      descriptionPlaceholder: "Ghi chú chi tiết mục tiêu...",
+      icon: "Biểu Tượng",
+      color: "Màu Sắc",
+      schedule: "Lịch Thực Hiện",
+      daysOfWeek: "Ngày Trong Tuần",
+      frequency: "Tần Suất",
+      timesPerDay: "Số Lần Mỗi Ngày",
+      specificTime: "Thời Gian Cụ Thể",
+      goal: "Mục Tiêu",
+      goalType: "Loại Mục Tiêu",
+      target: "Số Lần/Thời Gian",
+      unit: "Đơn Vị",
+      reminder: "Nhắc Nhở",
+      enableReminder: "Bật Nhắc Nhở",
+      reminderTime: "Thời Gian Nhắc",
+      reminderSound: "Âm Thanh Nhắc",
+      repeatIfIncomplete: "Nhắc Lại Nếu Chưa Hoàn Thành",
+      gamification: "Game Hóa",
+      expReward: "Phần Thưởng EXP",
+      coinReward: "Phần Thưởng Gold",
+      badge: "Huy Hiệu Thành Tích",
+      advanced: "Cài Đặt Nâng Cao",
+      difficulty: "Độ Khó",
+      priority: "Mức Ưu Tiên",
+      energyCost: "Năng Lượng Tiêu Hao",
+      notes: "Ghi Chú",
+      notesPlaceholder: "Thêm ghi chú...",
+      canShare: "Có Thể Chia Sẻ Với Bạn Bè",
+      unlockedAt: "Mở khóa tại streak:",
       saveHabit: "Lưu Thói Quen",
+      cancel: "Hủy",
       enterName: "Vui lòng nhập tên thói quen",
     },
     // Store
@@ -499,12 +612,51 @@ export const translations = {
         effect: "+1 Cấp độ ngay",
       },
     },
+    // Verification System (Vietnamese)
+    verification: {
+      title: "Phương Pháp Xác Minh",
+      autoDetected: "Hệ thống tự động phát hiện:",
+      changeType: "Thay đổi phương pháp xác minh:",
+      tap: {
+        description: "Nhấn đơn giản để hoàn thành",
+      },
+      timer: {
+        description: "Hoàn thành trong thời gian giới hạn",
+      },
+      checklist: {
+        description: "Hoàn thành danh sách nhiều bước",
+      },
+      proof: {
+        description: "Tải lên bằng chứng hoàn thành",
+        placeholder: "Nhập bằng chứng hoặc tải ảnh",
+      },
+      sensor: {
+        description: "Theo dõi qua cảm biến (bước chân, v.v)",
+      },
+      auto: {
+        description: "Tự động phát hiện phương pháp",
+      },
+    },
     // Start Page
     start: {
+      title: "HabitQuest",
       welcome: "Chào mừng đến với HabitQuest!",
       description: "Bắt đầu hành trình xây dựng thói quen tốt. Theo dõi tiến độ, lên cấp và chinh phục mục tiêu!",
       startButton: "Bắt Đầu",
       settings: "Cài Đặt", // ✅ NEW
+    },
+    // Player Status
+    playerStatus: {
+      level: "Lv.",
+      gold: "Vàng",
+      hp: "HP",
+      exp: "EXP",
+      day: "Ngày",
+    },
+    // Achievements Page
+    achievementsPage: {
+      title: "Thành Tích",
+      locked: "🔒",
     },
   },
 
@@ -529,6 +681,11 @@ export const translations = {
     habit: {
       done: "✅ 完了",
       pending: "⬜ 保留中",
+      verification: "検証",
+      difficulty: "難易度",
+      reminder: "リマインダー",
+      days: "日",
+      delete: "習慣を削除",
       deleteConfirm: "\"{title}\" を削除しますか？\nペナルティ: {damage} HP{shield}",
       shieldActive: " (シールド有効)",
     },
@@ -559,9 +716,41 @@ export const translations = {
     // Add Habit
     addHabit: {
       title: "習慣を追加",
+      basicInfo: "基本情報",
       habitName: "習慣名",
-      badge: "✨ アチーブメントバッジ",
+      habitNamePlaceholder: "例：水を飲む、日本語を勉強する",
+      description: "説明",
+      descriptionPlaceholder: "目標の詳細なメモ...",
+      icon: "アイコン",
+      color: "色",
+      schedule: "スケジュール",
+      daysOfWeek: "曜日",
+      frequency: "頻度",
+      timesPerDay: "1日あたり回数",
+      specificTime: "具体的な時間",
+      goal: "目標",
+      goalType: "目標タイプ",
+      target: "目標番号",
+      unit: "単位",
+      reminder: "リマインダー",
+      enableReminder: "リマインダーを有効にする",
+      reminderTime: "リマインダー時間",
+      reminderSound: "リマインダー音",
+      repeatIfIncomplete: "未完了の場合は繰り返す",
+      gamification: "ゲーミフィケーション",
+      expReward: "EXP報酬",
+      coinReward: "ゴールド報酬",
+      badge: "アチーブメントバッジ",
+      advanced: "高度な設定",
+      difficulty: "難易度",
+      priority: "優先度",
+      energyCost: "エネルギーコスト",
+      notes: "メモ",
+      notesPlaceholder: "メモを追加...",
+      canShare: "友人と共有可能",
+      unlockedAt: "ストリーク時にロック解除:",
       saveHabit: "習慣を保存",
+      cancel: "キャンセル",
       enterName: "習慣名を入力してください",
     },
     // Store
@@ -753,12 +942,51 @@ export const translations = {
         effect: "+1 レベル即座",
       },
     },
+    // Verification System
+    verification: {
+      title: "検証方法",
+      autoDetected: "システムが自動的に検出しました:",
+      changeType: "検証方法を変更:",
+      tap: {
+        description: "簡単にタップして完了",
+      },
+      timer: {
+        description: "制限時間内に完了",
+      },
+      checklist: {
+        description: "マルチステップチェックリストを完了",
+      },
+      proof: {
+        description: "完了の証拠をアップロード",
+        placeholder: "証拠を入力するか写真をアップロード",
+      },
+      sensor: {
+        description: "センサーで追跡 (ステップなど)",
+      },
+      auto: {
+        description: "自動検出",
+      },
+    },
     // Start Page
     start: {
-      welcome: "HabitQuestへようこそ！",
-      description: "良い習慣を築く旅を始めましょう。進捗を追跡し、レベルアップして目標を達成しましょう！",
-      startButton: "冒険を開始",
-      settings: "設定", // ✅ NEW
+      title: "HabitQuest",
+      welcome: "HabitQuestへようこそ!",
+      description: "良い習慣を構築し、キャラクターをレベルアップしましょう！",
+      startButton: "冒険を始める",
+      settings: "設定",
+    },
+    // Player Status
+    playerStatus: {
+      level: "Lv.",
+      gold: "ゴールド",
+      hp: "HP",
+      exp: "EXP",
+      day: "日",
+    },
+    // Achievements Page
+    achievementsPage: {
+      title: "アチーブメント",
+      locked: "🔒",
     },
   },
 };

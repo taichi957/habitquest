@@ -2,10 +2,12 @@ import PhoneFrame from "../components/PhoneFrame";
 import { useShopStore } from "../store/useShopStore";
 import { usePlayerStore } from "../store/usePlayerStore";
 import { useTranslation } from "../hooks/useTranslation";
+import { useNotification } from "../hooks/useNotification";
 import { useLanguageStore } from "../store/useLanguageStore"; // ✅ NEW
 import { translations } from "../i18n/translations"; // ✅ NEW
 import type { ShopItem } from "../types/item";
 import { useHabitStore } from "../store/useHabitStore";
+import { useMemo } from "react"; // ✅ NEW
 
 export default function Store() {
   const items = useShopStore((s) => s.items);
@@ -24,36 +26,39 @@ export default function Store() {
   const habits = useHabitStore((s) => s.habits);
   const addStreakToHabit = useHabitStore((s) => s.addStreakToHabit);
   const t = useTranslation();
+  const notify = useNotification();
   const lang = useLanguageStore((s) => s.language); // ✅ NEW
 
   const RESET_COST = 10;
 
-  // ✅ HELPER: Get translated item text
-  const getItemText = (itemId: string) => {
-    const itemsMap: Record<string, keyof typeof translations["en"]["items"]> = {
-      exp_boost: "expBoost",
-      gold_boost: "goldBoost",
-      hp_boost: "hpBoost",
-      shield: "shield",
-      barrier: "barrier",
-      heal_potion: "healPotion",
-      mega_potion: "megaPotion",
-      revive_scroll: "reviveScroll",
-      streak_elixir: "streakElixir",
+  // ✅ HELPER: Get translated item text - MEMOIZED FOR REACTIVE UPDATES
+  const getItemText = useMemo(() => {
+    return (itemId: string) => {
+      const itemsMap: Record<string, keyof typeof translations["en"]["items"]> = {
+        exp_boost: "expBoost",
+        gold_boost: "goldBoost",
+        hp_boost: "hpBoost",
+        shield: "shield",
+        barrier: "barrier",
+        heal_potion: "healPotion",
+        mega_potion: "megaPotion",
+        revive_scroll: "reviveScroll",
+        streak_elixir: "streakElixir",
+      };
+
+      const key = itemsMap[itemId];
+      if (!key) return { name: "Unknown", description: "" };
+
+      return translations[lang].items[key];
     };
-
-    const key = itemsMap[itemId];
-    if (!key) return { name: "Unknown", description: "" };
-
-    return translations[lang].items[key];
-  };
+  }, [lang]); // ✅ DEPENDENCY ON LANGUAGE
 
   const handleUseItem = (item: ShopItem) => {
     if (!item.effect) return;
 
     if (item.effect.healHp) {
       if (player.hp >= player.maxHp) {
-        alert(t("store.hpFull"));
+        notify(t("store.hpFull"), "warning");
         return;
       }
 
@@ -64,19 +69,19 @@ export default function Store() {
 
     if (item.effect.revive) {
       if (!dayLocked) {
-        alert(t("store.notDead"));
+        notify(t("store.notDead"), "warning");
         return;
       }
 
       revive();
       consumeItem(item.id);
-      alert(t("store.revived"));
+      notify(t("store.revived"), "success");
       return;
     }
 
     if (item.effect.streak) {
       if (habits.length === 0) {
-        alert(t("store.noHabits"));
+        notify(t("store.noHabits"), "info");
         return;
       }
 
@@ -87,11 +92,12 @@ export default function Store() {
       if (addStreakToHabit) {
         addStreakToHabit(bestHabit.id, item.effect.streak);
         consumeItem(item.id);
-        alert(
+        notify(
           t("store.streakAdded", {
             amount: item.effect.streak,
             title: bestHabit.title,
-          })
+          }),
+          "success"
         );
       }
       return;
@@ -181,7 +187,7 @@ export default function Store() {
 
             resetShop(); // ✅ NO PARAMS
             spendGold(RESET_COST);
-            alert(t("store.resetSuccess"));
+            notify(t("store.resetSuccess"), "success");
           }}
           title={
             ownedItemIds.length === 0

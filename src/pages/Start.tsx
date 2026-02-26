@@ -23,7 +23,7 @@ export default function Start({ onStart }: Props) {
   return (
     <PhoneFrame>
       <div className="page-card">
-        <h2 className="page-title">HabitQuest</h2>
+        <h2 className="page-title">{t("start.title")}</h2>
         
         <div style={{ textAlign: "center", padding: "40px 20px" }}>
           <div style={{ fontSize: "60px", marginBottom: "20px" }}>
@@ -54,7 +54,11 @@ export default function Start({ onStart }: Props) {
               fontWeight: "bold",
               boxShadow: "0 4px 0 #6b4a2b",
               transition: "all 0.2s",
-              marginBottom: "20px",
+              marginBottom: "40px",
+              width: "80%",
+              maxWidth: "200px",
+              display: "block",
+              margin: "0 auto 40px",
             }}
             onMouseDown={(e) => {
               e.currentTarget.style.transform = "translateY(4px)";
@@ -82,6 +86,10 @@ export default function Start({ onStart }: Props) {
               fontWeight: "bold",
               boxShadow: "0 3px 0 #6b4a2b",
               transition: "all 0.2s",
+              width: "80%",
+              maxWidth: "150px",
+              display: "block",
+              margin: "0 auto",
             }}
             onMouseDown={(e) => {
               e.currentTarget.style.transform = "translateY(3px)";

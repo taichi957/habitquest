@@ -13,6 +13,7 @@ import { useSoundStore } from "../store/useSoundStore";
 import { useVictoryLogStore } from "../store/useVictoryLogStore";
 import { useLanguageStore, type Language } from "../store/useLanguageStore";
 import { useTranslation } from "../hooks/useTranslation";
+import { useNotification } from "../hooks/useNotification";
 import { useBackgroundStore } from "../store/useBackgroundStore";
 import { BACKGROUNDS } from "../data/backgrounds";
 import { usePetStore } from "../store/usePetStore";
@@ -55,6 +56,7 @@ export default function Profile() {
   const setBgVolume = useSoundStore((s) => s.setBgVolume);
   const setSFXVolume = useSoundStore((s) => s.setSFXVolume);
   const player = usePlayerStore((s) => s.player);
+  const notify = useNotification();
   const setAvatar = usePlayerStore((s) => s.setAvatar);
   const setName = usePlayerStore((s) => s.setName);
   const resetPlayer = usePlayerStore((s) => s.resetPlayer);
@@ -117,7 +119,7 @@ export default function Profile() {
               placeholder="Player name"
             />
             <div className="profile-level">
-              Lv. {player.level} • 💰 {player.gold}G
+              {t("playerStatus.level")} {player.level} • 💰 {player.gold}G
             </div>
           </div>
         </div>
@@ -265,7 +267,7 @@ export default function Profile() {
                         }
 
                         if (gold < pet.price) {
-                          alert(t("profile.notEnoughGold"));
+                          notify(t("profile.notEnoughGold"), "warning");
                           return;
                         }
 
@@ -325,7 +327,7 @@ export default function Profile() {
 
                       // 🔒 Chưa mở → mua
                       if (gold < a.price) {
-                        alert(t("profile.notEnoughGold"));
+                        notify(t("profile.notEnoughGold"), "warning");
                         return;
                       }
 
@@ -384,7 +386,7 @@ export default function Profile() {
 
                       // 🔒 Chưa mở → mua
                       if (gold < bg.price) {
-                        alert(t("profile.notEnoughGold"));
+                        notify(t("profile.notEnoughGold"), "warning");
                         return;
                       }
 
