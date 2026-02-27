@@ -73,7 +73,7 @@ export default function HabitDetail() {
     return (
       <PhoneFrame>
         <div style={{ textAlign: "center", padding: "20px" }}>
-          Habit not found
+          {t("habit.habitNotFound")}
         </div>
       </PhoneFrame>
     );
@@ -122,7 +122,7 @@ export default function HabitDetail() {
 
     // Check file type
     if (!file.type.startsWith("image/")) {
-      notify("Please select an image file", "warning");
+      notify(t("habit.selectImageFile") || "Please select an image file", "warning");
       return;
     }
 
@@ -144,7 +144,7 @@ export default function HabitDetail() {
       }
     };
     reader.onerror = () => {
-      notify("Failed to upload image", "error");
+      notify(t("habit.imageUploadFailed") || "Failed to upload image", "error");
       setIsImageUploading(false);
     };
     reader.readAsDataURL(file);
@@ -355,16 +355,16 @@ export default function HabitDetail() {
         {/* ===== GOAL SECTION ===== */}
         {habit.goal && habit.goal.type !== "status" && (
           <div className="modal-section">
-            <h4 className="section-title">🎯 Goal</h4>
+            <h4 className="section-title">🎯 {t("habit.goal")}</h4>
             <div className="goal-info">
               <div>
-                <strong>Goal Type:</strong>{" "}
-                {habit.goal.type === "count" && "Count"}
-                {habit.goal.type === "time" && "Time (minutes)"}
-                {habit.goal.type === "quantity" && "Quantity"}
+                <strong>{t("habit.goalType") || "Goal Type:"}</strong>{" "}
+                {habit.goal.type === "count" && t("habit.goalCount")}
+                {habit.goal.type === "time" && t("habit.goalTime")}
+                {habit.goal.type === "quantity" && t("habit.goalQuantity")}
               </div>
               <div>
-                <strong>Target:</strong> {habit.goal.target}{" "}
+                <strong>{t("habit.targetLabel") || "Target:"}</strong> {habit.goal.target}{" "}
                 {habit.goal.unit && `${habit.goal.unit}`}
               </div>
 
@@ -396,24 +396,24 @@ export default function HabitDetail() {
         {/* ===== SCHEDULE SECTION ===== */}
         {habit.schedule && (
           <div className="modal-section">
-            <h4 className="section-title">📅 Schedule</h4>
+            <h4 className="section-title">📅 {t("habit.schedule")}</h4>
             <div className="schedule-info">
               <div>
-                <strong>Days:</strong>{" "}
+                <strong>{t("habit.daysLabel") || "Days:"}</strong>{" "}
                 {habit.schedule.daysOfWeek.join(", ")}
               </div>
               <div>
-                <strong>Frequency:</strong>{" "}
-                {habit.schedule.frequency === "daily" && "Hàng ngày"}
-                {habit.schedule.frequency === "alternate" && "Cách ngày"}
-                {habit.schedule.frequency === "custom" && "Tùy chỉnh"}
+                <strong>{t("habit.frequencyLabel") || "Frequency:"}</strong>{" "}
+                {habit.schedule.frequency === "daily" && t("habit.frequencyDaily")}
+                {habit.schedule.frequency === "alternate" && t("habit.frequencyAlternate")}
+                {habit.schedule.frequency === "custom" && t("habit.frequencyCustom")}
               </div>
               <div>
-                <strong>Times/Day:</strong> {habit.schedule.timesPerDay}
+                <strong>{t("habit.timesPerDayLabel") || "Times/Day:"}</strong> {habit.schedule.timesPerDay}
               </div>
               {habit.schedule.specificTime && (
                 <div>
-                  <strong>Specific Time:</strong>{" "}
+                  <strong>{t("habit.specificTimeLabel") || "Specific Time:"}</strong>{" "}
                   {habit.schedule.specificTime}
                 </div>
               )}
@@ -424,20 +424,20 @@ export default function HabitDetail() {
         {/* ===== REMINDER SECTION ===== */}
         {habit.reminder && habit.reminder.enabled && (
           <div className="modal-section">
-            <h4 className="section-title">🔔 Reminder</h4>
+            <h4 className="section-title">🔔 {t("habit.reminderSection")}</h4>
             <div className="reminder-info">
               <div>
-                <strong>Time:</strong> {habit.reminder.time}
+                <strong>{t("habit.timeLabel") || "Time:"}</strong> {habit.reminder.time}
               </div>
               <div>
-                <strong>Sound:</strong>{" "}
-                {habit.reminder.sound === "none" && "None"}
-                {habit.reminder.sound === "bell" && "🔔 Bell"}
-                {habit.reminder.sound === "chime" && "✨ Chime"}
-                {habit.reminder.sound === "vibrate" && "📳 Vibrate"}
+                <strong>{t("habit.soundLabel") || "Sound:"}</strong>{" "}
+                {habit.reminder.sound === "none" && t("habit.soundNone")}
+                {habit.reminder.sound === "bell" && t("habit.soundBell")}
+                {habit.reminder.sound === "chime" && t("habit.soundChime")}
+                {habit.reminder.sound === "vibrate" && t("habit.soundVibrate")}
               </div>
               {habit.reminder.repeatIfIncomplete && (
-                <div>⚠️ Repeat if incomplete</div>
+                <div>⚠️ {t("habit.repeatIfIncomplete")}</div>
               )}
             </div>
           </div>
@@ -445,13 +445,13 @@ export default function HabitDetail() {
 
         {/* ===== VERIFICATION SECTION ===== */}
         <div className="modal-section">
-          <h4 className="section-title">🎮 {getVerificationIcon()} Verification</h4>
+          <h4 className="section-title">🎮 {getVerificationIcon()} {t("habit.verificationSection") || "Verification"}</h4>
 
           {/* TAP TYPE */}
           {habit.verificationType === "tap" && (
             <div style={{ textAlign: "center", padding: "20px" }}>
               <div style={{ fontSize: "64px", marginBottom: "10px" }}>👆</div>
-              <p>Ready? Just complete this habit!</p>
+              <p>{t("habit.ready") || "Ready? Just complete this habit!"}</p>
             </div>
           )}
 
@@ -462,7 +462,7 @@ export default function HabitDetail() {
                 {formatTime(remainingSeconds)}
               </div>
               <small style={{ display: "block", marginBottom: "15px" }}>
-                Target: {formatTime(targetSeconds)}
+                {t("habit.targetTime") || "Target:"} {formatTime(targetSeconds)}
               </small>
               <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
                 <button
@@ -474,7 +474,7 @@ export default function HabitDetail() {
                   disabled={isTimerRunning}
                   style={{ flex: 1 }}
                 >
-                  ▶️ Start
+                  ▶️ {t("habit.startButton") || "Start"}
                 </button>
                 <button
                   className="btn-secondary"
@@ -482,14 +482,14 @@ export default function HabitDetail() {
                   disabled={!isTimerRunning}
                   style={{ flex: 1 }}
                 >
-                  ⏸️ Stop
+                  ⏸️ {t("habit.stopButton") || "Stop"}
                 </button>
                 <button
                   className="btn-secondary"
                   onClick={() => setTimerSeconds(0)}
                   style={{ flex: 1 }}
                 >
-                  🔄 Reset
+                  🔄 {t("habit.resetButton") || "Reset"}
                 </button>
               </div>
             </div>
@@ -498,12 +498,12 @@ export default function HabitDetail() {
           {/* PROOF TYPE */}
           {habit.verificationType === "proof" && (
             <div style={{ padding: "15px" }}>
-              <p>Upload proof of completion:</p>
+              <p>{t("habit.uploadProof") || "Upload proof of completion:"}</p>
               
               {/* Image Upload */}
               <div style={{ marginBottom: "12px" }}>
                 <label style={{ display: "block", marginBottom: "8px", fontSize: "12px", fontWeight: "bold", color: "#FFD76E" }}>
-                  📸 Choose Image:
+                  📸 {t("habit.chooseImage") || "Choose Image:"}
                 </label>
                 <input
                   type="file"
@@ -523,7 +523,7 @@ export default function HabitDetail() {
                 />
                 {isImageUploading && (
                   <div style={{ marginTop: "8px", color: "#FFD76E", fontSize: "12px" }}>
-                    ⏳ Uploading image...
+                    ⏳ {t("habit.uploadingImage") || "Uploading image..."}
                   </div>
                 )}
                 {proofImage && (
@@ -539,7 +539,7 @@ export default function HabitDetail() {
                       }}
                     />
                     <div style={{ marginTop: "8px", fontSize: "12px", color: "#FFD76E" }}>
-                      ✅ Image uploaded and saved
+                      ✅ {t("habit.imageUploadedSuccess") || "Image uploaded and saved"}
                     </div>
                   </div>
                 )}
@@ -550,16 +550,16 @@ export default function HabitDetail() {
           {/* SENSOR TYPE */}
           {habit.verificationType === "sensor" && (
             <div style={{ padding: "15px" }}>
-              <p>Enter sensor data ({habit.goal?.unit || "count"}):</p>
+              <p>{t("habit.enterSensorData") || "Enter sensor data"} ({habit.goal?.unit || "count"}):</p>
               <input
                 type="number"
-                placeholder="Enter count..."
+                placeholder={t("habit.enterCount") || "Enter count..."}
                 value={sensorInput}
                 onChange={(e) => setSensorInput(e.target.value)}
                 className="completion-input"
               />
               <small style={{ display: "block", marginTop: "10px", color: "#666" }}>
-                Target: {habit.goal?.target || 1000} {habit.goal?.unit || ""}
+                {t("habit.targetTime") || "Target:"} {habit.goal?.target || 1000} {habit.goal?.unit || ""}
               </small>
             </div>
           )}
@@ -567,7 +567,7 @@ export default function HabitDetail() {
           {/* CHECKLIST TYPE */}
           {habit.verificationType === "checklist" && (
             <div style={{ padding: "15px" }}>
-              <p>Complete all checklist items below:</p>
+              <p>{t("habit.completeChecklist") || "Complete all checklist items below:"}</p>
               {habit.verificationConfig?.checklist?.items && habit.verificationConfig.checklist.items.length > 0 ? (
                 <div style={{ marginTop: "12px" }}>
                   {habit.verificationConfig.checklist.items.map((item) => (
@@ -602,7 +602,7 @@ export default function HabitDetail() {
                 </div>
               ) : (
                 <div style={{ marginTop: "10px", color: "#666" }}>
-                  <small>No checklist items configured</small>
+                  <small>{t("habit.noChecklistItems") || "No checklist items configured"}</small>
                 </div>
               )}
             </div>
@@ -612,7 +612,7 @@ export default function HabitDetail() {
           {habit.verificationType === "auto" && (
             <div style={{ textAlign: "center", padding: "20px" }}>
               <div style={{ fontSize: "48px", marginBottom: "10px" }}>🤖</div>
-              <p>Automatically detected completion</p>
+              <p>{t("habit.autoDetected") || "Automatically detected completion"}</p>
             </div>
           )}
 
@@ -627,18 +627,18 @@ export default function HabitDetail() {
               color: "#d32f2f",
               fontSize: "14px"
             }}>
-              ❌ Verification not complete yet!
+              ❌ {t("habit.verificationIncomplete") || "Verification not complete yet!"}
               {habit.verificationType === "timer" && (
-                <div>You need to run the timer for {habit.goal?.target || 30} minutes</div>
+                <div>{t("habit.needTimerMinutes", { minutes: habit.goal?.target || 30 }) || `You need to run the timer for ${habit.goal?.target || 30} minutes`}</div>
               )}
               {habit.verificationType === "proof" && (
-                <div>Upload an image as proof</div>
+                <div>{t("habit.needProofImage") || "Upload an image as proof"}</div>
               )}
               {habit.verificationType === "sensor" && (
-                <div>You need to reach {habit.goal?.target || 1000} {habit.goal?.unit || ""}</div>
+                <div>{t("habit.needSensorValue", { value: habit.goal?.target || 1000, unit: habit.goal?.unit || "" }) || `You need to reach ${habit.goal?.target || 1000} ${habit.goal?.unit || ""}`}</div>
               )}
               {habit.verificationType === "checklist" && (
-                <div>You need to complete all checklist items</div>
+                <div>{t("habit.needChecklistComplete") || "You need to complete all checklist items"}</div>
               )}
             </div>
           )}
@@ -646,26 +646,26 @@ export default function HabitDetail() {
 
         {/* ===== PRIORITY & DIFFICULTY ===== */}
         <div className="modal-section">
-          <h4 className="section-title">⚙️ Settings</h4>
+          <h4 className="section-title">⚙️ {t("habit.settings")}</h4>
           <div className="settings-grid">
             {habit.priority && (
               <div>
-                <strong>📌 Priority:</strong>{" "}
-                {habit.priority === "low" && "⬇️ Low"}
-                {habit.priority === "medium" && "➡️ Medium"}
-                {habit.priority === "high" && "⬆️ High"}
+                <strong>📌 {t("habit.priorityLabel") || "Priority:"}</strong>{" "}
+                {habit.priority === "low" && t("habit.priorityLow")}
+                {habit.priority === "medium" && t("habit.priorityMedium")}
+                {habit.priority === "high" && t("habit.priorityHigh")}
               </div>
             )}
             {habit.energyCost && (
               <div>
-                <strong>⚡ Energy:</strong> {habit.energyCost}/10
+                <strong>⚡ {t("habit.energyLabel") || "Energy:"}</strong> {habit.energyCost}/10
               </div>
             )}
           </div>
 
           {habit.notes && (
             <div style={{ marginTop: "10px" }}>
-              <strong>📝 Notes:</strong>
+              <strong>📝 {t("habit.notesLabel") || "Notes:"}</strong>
               <p className="notes-text">{habit.notes}</p>
             </div>
           )}
@@ -681,13 +681,13 @@ export default function HabitDetail() {
             onClick={handleDelete}
             disabled={dayLocked}
           >
-            🗑 Delete
+            🗑 {t("habit.deleteButton")}
           </button>
           <button
             className={`btn-primary ${dayLocked || isImageUploading ? "disabled" : ""}`}
             onClick={handleComplete}
             disabled={dayLocked || isImageUploading}
-            title={isImageUploading ? "Waiting for image upload..." : ""}
+            title={isImageUploading ? t("habit.uploadingWait") : ""}
           >
             {isImageUploading ? "⏳ Uploading..." : " " + t("habit.done")}
           </button>

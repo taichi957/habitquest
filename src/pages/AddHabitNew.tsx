@@ -278,8 +278,8 @@ export default function AddHabitNew() {
         </div>
 
         <div className="template-selector">
-          <h3 className="template-title">📌 Choose Template</h3>
-          <p className="template-subtitle">Select one of 6 examples or create custom</p>
+          <h3 className="template-title">📌 {t("addHabit.chooseTemplate")}</h3>
+          <p className="template-subtitle">{t("addHabit.selectTemplate")}</p>
 
           <div className="template-grid">
             {seedHabits.map((habit) => {
@@ -349,7 +349,7 @@ export default function AddHabitNew() {
               }}
             >
               <div className="template-icon">➕</div>
-              <div className="template-name">Custom</div>
+              <div className="template-name">{t("addHabit.customHabit")}</div>
               <div className="template-type">✨</div>
             </button>
           </div>
@@ -364,12 +364,12 @@ export default function AddHabitNew() {
   return (
     <PhoneFrame>
       <div className="form-section">
-        <h2 className="page-title">✏️ {selectedTemplate ? "Customize Template" : "Create Custom"}</h2>
+        <h2 className="page-title">✏️ {selectedTemplate ? t("addHabit.customizeTemplate") : t("addHabit.createCustom")}</h2>
         <button
           className="back-btn"
           onClick={() => setStep("templates")}
         >
-          ← Back
+          ← {t("addHabit.back")}
         </button>
       </div>
 
@@ -379,30 +379,30 @@ export default function AddHabitNew() {
           <h3 className="form-section-title">📝 {t("addHabit.basicInfo")}</h3>
 
           <div className="form-group">
-            <label className="form-label">Title</label>
+            <label className="form-label">{t("addHabit.habitName") || "Title"}</label>
             <input
               className="habit-input"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Habit name..."
+              placeholder={t("addHabit.habitNamePlaceholder") || "Habit name..."}
             />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Description</label>
+            <label className="form-label">{t("addHabit.description") || "Description"}</label>
             <textarea
               className="habit-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Add details..."
+              placeholder={t("addHabit.descriptionPlaceholder") || "Add details..."}
               rows={2}
             />
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Icon</label>
+              <label className="form-label">{t("addHabit.icon") || "Icon"}</label>
               <div className="icon-picker">
                 {HABIT_ICONS.map((i) => (
                   <button
@@ -417,7 +417,7 @@ export default function AddHabitNew() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Color</label>
+              <label className="form-label">{t("addHabit.color") || "Color"}</label>
               <div className="color-picker">
                 {COLORS.map((c) => (
                   <button
@@ -437,16 +437,16 @@ export default function AddHabitNew() {
           <h3 className="form-section-title">🎯 {t("addHabit.goal")}</h3>
 
           <div className="form-group">
-            <label className="form-label">Goal Type</label>
+            <label className="form-label">{t("addHabit.goalType") || "Goal Type"}</label>
             <select
               className="habit-input"
               value={goalType}
               onChange={(e) => setGoalType(e.target.value as any)}
             >
-              <option value="status">Status (No Target)</option>
-              <option value="count">Count</option>
-              <option value="time">Time (minutes)</option>
-              <option value="quantity">Quantity</option>
+              <option value="status">{t("addHabit.statusOption") || "Status (No Target)"}</option>
+              <option value="count">{t("addHabit.countOption") || "Count"}</option>
+              <option value="time">{t("addHabit.timeOption") || "Time (minutes)"}</option>
+              <option value="quantity">{t("addHabit.quantityOption") || "Quantity"}</option>
             </select>
           </div>
 
@@ -454,7 +454,7 @@ export default function AddHabitNew() {
             <>
               <div className="form-row">
                 <div className="form-group">
-                  <label className="form-label">Target</label>
+                  <label className="form-label">{t("addHabit.targetLabel") || "Target"}</label>
                   <input
                     className="habit-input"
                     type="number"
@@ -464,13 +464,13 @@ export default function AddHabitNew() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Unit</label>
+                  <label className="form-label">{t("addHabit.unit") || "Unit"}</label>
                   <input
                     className="habit-input"
                     type="text"
                     value={goalUnit}
                     onChange={(e) => setGoalUnit(e.target.value)}
-                    placeholder="e.g., min, km, items"
+                    placeholder={t("addHabit.unitPlaceholder") || "e.g., min, km, items"}
                   />
                 </div>
               </div>
@@ -484,27 +484,27 @@ export default function AddHabitNew() {
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Difficulty</label>
+              <label className="form-label">{t("addHabit.difficulty") || "Difficulty"}</label>
               <select
                 className="habit-input"
                 value={difficulty}
                 onChange={(e) => handleDifficultyChange(e.target.value)}
               >
-                <option value="easy">Easy 😊</option>
-                <option value="medium">Medium 🤔</option>
-                <option value="hard">Hard 💪</option>
+                <option value="easy">{t("addHabit.easyOption") || "Easy 😊"}</option>
+                <option value="medium">{t("addHabit.mediumOption") || "Medium 🤔"}</option>
+                <option value="hard">{t("addHabit.hardOption") || "Hard 💪"}</option>
               </select>
             </div>
             <div className="form-group">
-              <label className="form-label">Priority</label>
+              <label className="form-label">{t("addHabit.priority") || "Priority"}</label>
               <select
                 className="habit-input"
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as any)}
               >
-                <option value="low">Low ⬇️</option>
-                <option value="medium">Medium ➡️</option>
-                <option value="high">High ⬆️</option>
+                <option value="low">{t("addHabit.lowOption") || "Low ⬇️"}</option>
+                <option value="medium">{t("addHabit.mediumPriority") || "Medium ➡️"}</option>
+                <option value="high">{t("addHabit.highOption") || "High ⬆️"}</option>
               </select>
             </div>
           </div>
@@ -550,15 +550,15 @@ export default function AddHabitNew() {
           <h3 className="form-section-title">📅 {t("addHabit.schedule")}</h3>
 
           <div className="form-group">
-            <label className="form-label">Frequency</label>
+            <label className="form-label">{t("addHabit.frequency") || "Frequency"}</label>
             <select
               className="habit-input"
               value={frequency}
               onChange={(e) => setFrequency(e.target.value as any)}
             >
-              <option value="daily">Daily</option>
-              <option value="alternate">Alternate Days</option>
-              <option value="custom">Custom</option>
+              <option value="daily">{t("addHabit.daily") || "Daily"}</option>
+              <option value="alternate">{t("addHabit.alternate") || "Alternate Days"}</option>
+              <option value="custom">{t("addHabit.custom") || "Custom"}</option>
             </select>
           </div>
 
@@ -581,7 +581,7 @@ export default function AddHabitNew() {
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Times Per Day</label>
+              <label className="form-label">{t("addHabit.timesPerDay") || "Times Per Day"}</label>
               <input
                 className="habit-input"
                 type="number"
@@ -591,7 +591,7 @@ export default function AddHabitNew() {
               />
             </div>
             <div className="form-group">
-              <label className="form-label">Time</label>
+              <label className="form-label">{t("addHabit.specificTime") || "Time"}</label>
               <input
                 className="habit-input"
                 type="time"
@@ -613,7 +613,7 @@ export default function AddHabitNew() {
                 checked={reminderEnabled}
                 onChange={(e) => setReminderEnabled(e.target.checked)}
               />
-              Enable Reminder
+              {t("addHabit.enableReminder") || "Enable Reminder"}
             </label>
           </div>
 
@@ -621,7 +621,7 @@ export default function AddHabitNew() {
             <>
               <div className="form-row">
                 <div className="form-group">
-                  <label className="form-label">Reminder Time</label>
+                  <label className="form-label">{t("addHabit.reminderTime") || "Reminder Time"}</label>
                   <input
                     className="habit-input"
                     type="time"
@@ -630,16 +630,16 @@ export default function AddHabitNew() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Sound</label>
+                  <label className="form-label">{t("addHabit.reminderSound") || "Sound"}</label>
                   <select
                     className="habit-input"
                     value={reminderSound}
                     onChange={(e) => setReminderSound(e.target.value as any)}
                   >
-                    <option value="none">None</option>
-                    <option value="bell">Bell 🔔</option>
-                    <option value="chime">Chime 🎵</option>
-                    <option value="vibrate">Vibrate 📳</option>
+                    <option value="none">{t("addHabit.soundNone") || "None"}</option>
+                    <option value="bell">{t("addHabit.soundBell") || "Bell 🔔"}</option>
+                    <option value="chime">{t("addHabit.soundChime") || "Chime 🎵"}</option>
+                    <option value="vibrate">{t("addHabit.soundVibrate") || "Vibrate 📳"}</option>
                   </select>
                 </div>
               </div>
@@ -651,7 +651,7 @@ export default function AddHabitNew() {
                     checked={repeatReminder}
                     onChange={(e) => setRepeatReminder(e.target.checked)}
                   />
-                  Repeat if Incomplete
+                  {t("addHabit.repeatIfIncomplete") || "Repeat if Incomplete"}
                 </label>
               </div>
             </>
@@ -660,8 +660,8 @@ export default function AddHabitNew() {
 
         {/* ===== VERIFICATION TYPE (USER SELECT) ===== */}
         <div className="form-section">
-          <h3 className="form-section-title">🎮 Verification Method</h3>
-          <p className="form-hint">Choose how to verify habit completion:</p>
+          <h3 className="form-section-title">🎮 {t("addHabit.verificationMethod") || "Verification Method"}</h3>
+          <p className="form-hint">{t("addHabit.chooseVerification") || "Choose how to verify habit completion:"}</p>
           
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginTop: "10px" }}>
             {/* Tap - Simple Completion */}
@@ -670,8 +670,8 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "tap" ? "active" : ""}`}
               onClick={() => setVerificationType("tap")}
             >
-              👆 Tap<br/>
-              <small>Simple click</small>
+              👆 {t("addHabit.tapMethod") || "Tap"}<br/>
+              <small>{t("addHabit.tapDesc") || "Simple click"}</small>
             </button>
 
             {/* Timer - Time-based */}
@@ -680,8 +680,8 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "timer" ? "active" : ""}`}
               onClick={() => setVerificationType("timer")}
             >
-              ⏱️ Timer<br/>
-              <small>Time required</small>
+              ⏱️ {t("addHabit.timerMethod") || "Timer"}<br/>
+              <small>{t("addHabit.timerDesc") || "Time required"}</small>
             </button>
 
             {/* Checklist - Multiple steps */}
@@ -690,8 +690,8 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "checklist" ? "active" : ""}`}
               onClick={() => setVerificationType("checklist")}
             >
-              ✅ Checklist<br/>
-              <small>Multiple tasks</small>
+              ✅ {t("addHabit.checklistMethod") || "Checklist"}<br/>
+              <small>{t("addHabit.checklistDesc") || "Multiple tasks"}</small>
             </button>
 
             {/* Proof - Photo/Evidence */}
@@ -700,8 +700,8 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "proof" ? "active" : ""}`}
               onClick={() => setVerificationType("proof")}
             >
-              📸 Proof<br/>
-              <small>Photo/Evidence</small>
+              📸 {t("addHabit.proofMethod") || "Proof"}<br/>
+              <small>{t("addHabit.proofDesc") || "Photo/Evidence"}</small>
             </button>
 
             {/* Sensor - GPS/Steps/Activity */}
@@ -710,8 +710,8 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "sensor" ? "active" : ""}`}
               onClick={() => setVerificationType("sensor")}
             >
-              👟 Sensor<br/>
-              <small>GPS/Steps</small>
+              👟 {t("addHabit.sensorMethod") || "Sensor"}<br/>
+              <small>{t("addHabit.sensorDesc") || "GPS/Steps"}</small>
             </button>
 
             {/* Auto - System auto-detect */}
@@ -720,22 +720,22 @@ export default function AddHabitNew() {
               className={`verification-btn ${verificationType === "auto" ? "active" : ""}`}
               onClick={() => setVerificationType("auto")}
             >
-              🤖 Auto<br/>
-              <small>System detect</small>
+              🤖 {t("addHabit.autoMethod") || "Auto"}<br/>
+              <small>{t("addHabit.autoDesc") || "System detect"}</small>
             </button>
           </div>
 
           {/* Current selection display */}
           <div className="verification-selection-display">
             <span className="verification-selection-icon">{getVerificationIcon()}</span>
-            <p className="verification-selection-text">Selected:</p>
+            <p className="verification-selection-text">{t("addHabit.selected") || "Selected:"}</p>
             <p className="verification-selection-type">{verificationType}</p>
           </div>
 
           {/* TIMER SETTINGS */}
           {verificationType === "timer" && (
             <div className="form-group" style={{ marginTop: 12 }}>
-              <label className="form-label">Duration (minutes)</label>
+              <label className="form-label">{t("addHabit.duration") || "Duration (minutes)"}</label>
               <input
                 type="number"
                 min={1}
@@ -753,7 +753,7 @@ export default function AddHabitNew() {
           {/* CHECKLIST ITEMS EDITOR */}
           {verificationType === "checklist" && (
             <div className="checklist-editor">
-              <h4 className="checklist-editor-title">✅ Checklist Items</h4>
+              <h4 className="checklist-editor-title">✅ {t("addHabit.checklistItems") || "Checklist Items"}</h4>
               
               <div className="checklist-items-list">
                 {checklistItems.map((item, index) => (
@@ -762,7 +762,7 @@ export default function AddHabitNew() {
                       type="text"
                       value={item.text}
                       onChange={(e) => handleUpdateChecklistItem(item.id, e.target.value)}
-                      placeholder={`Item ${index + 1}`}
+                      placeholder={`${t("addHabit.itemPlaceholder") || "Item"} ${index + 1}`}
                       className="checklist-item-input"
                     />
                     <button
@@ -770,7 +770,7 @@ export default function AddHabitNew() {
                       onClick={() => handleRemoveChecklistItem(item.id)}
                       className="checklist-delete-btn"
                     >
-                      🗑 Delete
+                      🗑 {t("addHabit.deleteItem") || "Delete"}
                     </button>
                   </div>
                 ))}
@@ -781,12 +781,12 @@ export default function AddHabitNew() {
                 onClick={handleAddChecklistItem}
                 className="checklist-add-btn"
               >
-                ➕ Add Item
+                ➕ {t("addHabit.addItem") || "Add Item"}
               </button>
 
               <div className="checklist-footer">
                 <small className="checklist-counter">
-                  Total items: <strong>{checklistItems.length}</strong>
+                  {t("addHabit.totalItems") || "Total items:"} <strong>{checklistItems.length}</strong>
                 </small>
               </div>
             </div>
@@ -796,10 +796,10 @@ export default function AddHabitNew() {
         {/* ===== ACTIONS ===== */}
         <div className="form-actions">
           <button className="btn-cancel" onClick={() => setStep("templates")}>
-            ← Back
+            ← {t("addHabit.back") || "Back"}
           </button>
           <button className="btn-save" onClick={handleSave}>
-            ➕ Add Habit
+            ➕ {t("addHabit.addHabitButton") || "Add Habit"}
           </button>
         </div>
       </div>
