@@ -35,7 +35,7 @@ const navigate = useNavigate();
   const [monsterHP, setMonsterHP] = useState(100);
   const [log, setLog] = useState(t('battle.startLog'));
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-  const [isWin, setIsWin] = useState(false);
+  const [, setIsWin] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [playerAnimating, setPlayerAnimating] = useState(false);
   const [enemyAnimating, setEnemyAnimating] = useState(false);
@@ -140,13 +140,7 @@ else if (playerHP <= 0) {
     setIsPlayerTurn(false);
   };
 
-  const resetGame = () => {
-    setPlayerHP(100);
-    setMonsterHP(100);
-    setLog(t('battle.startLog'));
-    setIsPlayerTurn(true);
-    setIsGameOver(false);
-  };
+  
 
   return (
     <div id="game-container">

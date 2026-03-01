@@ -33,7 +33,7 @@ const Battle2: React.FC = () => {
   const [monsterHP, setMonsterHP] = useState(MAX_MONSTER_HP);
   const [log, setLog] = useState(t('battle.startLog'));
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-  const [isWin, setIsWin] = useState(false);
+  const [, setIsWin] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [playerAnimating, setPlayerAnimating] = useState(false);
   const [enemyAnimating, setEnemyAnimating] = useState(false);
@@ -128,13 +128,6 @@ const Battle2: React.FC = () => {
     setIsPlayerTurn(false);
   };
 
-  const resetGame = () => {
-    setPlayerHP(100);
-    setMonsterHP(MAX_MONSTER_HP);
-    setLog(t('battle.startLog'));
-    setIsPlayerTurn(true);
-    setIsGameOver(false);
-  };
 
   return (
     <div id="game-container">
