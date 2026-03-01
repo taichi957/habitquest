@@ -19,6 +19,7 @@ export default function HabitCard({ habit }: Props) {
   const removeHabit = useHabitStore((s) => s.removeHabit);
   const gainExp = usePlayerStore((s) => s.gainExp);
   const loseHp = usePlayerStore((s) => s.loseHp);
+  const addEnergy = usePlayerStore((s) => s.addEnergy); // ⚡ new
   const dayLocked = usePlayerStore((s) => s.dayLocked);
   const ownedItemIds = useShopStore((s) => s.ownedItemIds);
   const hasShield = ownedItemIds.includes("shield");
@@ -43,6 +44,7 @@ export default function HabitCard({ habit }: Props) {
     if (!habit.completedToday) {
       const expAmount = habit.expReward || 50;
       gainExp(expAmount);
+      addEnergy(1); // ⚡ reward energy
     } else {
       loseHp(10);
     }

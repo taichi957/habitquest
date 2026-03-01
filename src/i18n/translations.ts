@@ -424,21 +424,44 @@ export const translations = {
     playerStatus: {
       level: "Lv.",
       gold: "Gold",
+      energy: "Energy",
       hp: "HP",
       exp: "EXP",
       day: "Day",
     },
-    // Achievements Page
-    achievementsPage: {
-      title: "Achievements",
-      locked: "🔒",
+    // Combat page
+    combat: {
+      title: "Combat",
+      energyLabel: "Energy",
+      costPerRun: "Cost 2 energy to start",
+      notEnoughEnergy: "Not enough energy",
+      winReward: "Victory! +{amount} gold",
+      losePenalty: "Defeated! -{amount} HP",
     },
+    // Battle Pages
+    battle: {
+      startLog: "Battle started! Choose your skill.",
+      monsterAttack: "Monster attacks{crit}, you lost {damage} HP",
+      monsterAttackCrit: " critically",
+      monsterHeal: "Monster healed {amount} HP",
+      playerAttack: "You used {skill} and dealt {damage} damage",
+      playerHeal: "You used {skill} and healed {amount} HP",
+      winMessage: "You won!\n +{gold} gold,\n +{exp} exp\n\nReturn to Combat to continue!",
+      loseMessage: "You lost...",
+      title: "Battle",
+      title2: "Battle 2",
+      title3: "Battle 3",
+      backToCombat: "← Back to Combat",
+      loseReward: "You lost... -{hp} HP, -{exp} exp\n\nReturn to Combat",
+    }
+    
   },
 
   vi: {
     // Navigation
     nav: {
       home: "Trang chủ",
+      combat: "Chiến đấu",
       addHabit: "Thêm Thói Quen",
       motivation: "Động Lực",
       profile: "Hồ Sơ",
@@ -859,21 +882,44 @@ export const translations = {
     playerStatus: {
       level: "Lv.",
       gold: "Vàng",
+      energy: "Năng lượng",
       hp: "HP",
       exp: "EXP",
       day: "Ngày",
     },
-    // Achievements Page
-    achievementsPage: {
-      title: "Thành Tích",
-      locked: "🔒",
+    // Combat page
+    combat: {
+      title: "Chiến đấu",
+      energyLabel: "Năng lượng",
+      costPerRun: "Tiêu 2 năng lượng để bắt đầu",
+      notEnoughEnergy: "Không đủ năng lượng",
+      winReward: "Thắng! +{amount} vàng",
+      losePenalty: "Thua! -{amount} HP",
     },
+    // Battle Pages
+    battle: {
+      startLog: "Trận đấu bắt đầu! Chọn kỹ năng.",
+      monsterAttack: "Quái vật tấn công{crit}, bạn mất {damage} HP",
+      monsterAttackCrit: " chí mạng",
+      monsterHeal: "Quái vật hồi {amount} HP",
+      playerAttack: "Bạn dùng {skill} gây {damage} sát thương",
+      playerHeal: "Bạn dùng {skill} và hồi {amount} HP",
+      winMessage: "Bạn thắng!\n +{gold} vàng,\n +{exp} exp\n\nQuay lại Combat để thử thách tiếp!",
+      loseMessage: "Bạn đã thua...",
+      title: "Battle",
+      title2: "Battle 2",
+      title3: "Battle 3",
+      backToCombat: "← Quay lại Combat",
+      loseReward: "Bạn thua... -{hp} HP, -{exp} exp\n\nQuay lại Combat",
+    }
+    
   },
 
   ja: {
     // Navigation
     nav: {
       home: "ホーム",
+      combat: "戦闘",
       addHabit: "習慣を追加",
       motivation: "モチベーション",
       profile: "プロフィール",
@@ -1294,15 +1340,37 @@ export const translations = {
     playerStatus: {
       level: "Lv.",
       gold: "ゴールド",
+      energy: "エネルギー",
       hp: "HP",
       exp: "EXP",
       day: "日",
     },
-    // Achievements Page
-    achievementsPage: {
-      title: "アチーブメント",
-      locked: "🔒",
+    // Combat page
+    combat: {
+      title: "戦闘",
+      energyLabel: "エネルギー",
+      costPerRun: "開始するにはエネルギーを2消費",
+      notEnoughEnergy: "エネルギーが足りません",
+      winReward: "勝利！+{amount} ゴールド",
+      losePenalty: "敗北！-{amount} HP",
     },
+    // Battle Pages
+    battle: {
+      startLog: "バトル開始！スキルを選択してください。",
+      monsterAttack: "モンスターが攻撃{crit}、{damage} HPを失いました",
+      monsterAttackCrit: "（クリティカル）",
+      monsterHeal: "モンスターが {amount} HP を回復しました",
+      playerAttack: "あなたは {skill} を使用して {damage} ダメージを与えました",
+      playerHeal: "あなたは {skill} を使用して {amount} HP を回復しました",
+      winMessage: "あなたが勝った！\n +{gold} ゴールド,\n +{exp} 経験値\n\n戦闘に戻って挑戦を続けましょう！",
+      loseMessage: "あなたは負けました...",
+      title: "バトル",
+      title2: "バトル 2",
+      title3: "バトル 3",
+      backToCombat: "← 戦闘に戻る",
+      loseReward: "あなたは負けました... -{hp} HP, -{exp} 経験値\n\n戦闘に戻る",
+    }
+    
   },
 };
 

@@ -20,6 +20,7 @@ export default function HabitDetail() {
   const updateHabit = useHabitStore((s) => s.updateHabit);
   const gainExp = usePlayerStore((s) => s.gainExp);
   const loseHp = usePlayerStore((s) => s.loseHp);
+  const addEnergy = usePlayerStore((s) => s.addEnergy); // ⚡ reward handler
   const dayLocked = usePlayerStore((s) => s.dayLocked);
   const ownedItemIds = useShopStore((s) => s.ownedItemIds);
   const hasShield = ownedItemIds.includes("shield");
@@ -232,6 +233,7 @@ export default function HabitDetail() {
       if (!currentHabit.completedToday) {
         const expAmount = currentHabit.expReward || 50;
         gainExp(expAmount);
+        addEnergy(1); // ⚡ reward energy
       } else {
         loseHp(10);
       }

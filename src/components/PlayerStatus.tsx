@@ -48,6 +48,7 @@ const currentDay = useTimeStore((s) => s.currentDay);
           </strong> */}
           <span>{t("playerStatus.level")} {player.level}</span>
           <p>💰 {player.gold} {t("playerStatus.gold")}</p>
+          <p>⚡ {player.energy} {t("playerStatus.energy")}</p>
           
         </div>
         

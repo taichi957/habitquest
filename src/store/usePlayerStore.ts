@@ -20,18 +20,25 @@ type PlayerState = {
   dayLocked: boolean;
   isHealing: boolean;
   isDamaged: boolean;
+
+  /* ===== BATTLE PROGRESSION ===== */
+  battlesWon: { battle1: boolean; battle2: boolean; battle3?: boolean };
+  winBattle: (battleId: "battle1" | "battle2" | "battle3") => void;
   
   /* ===== CORE ===== */
   gainExp: (amount: number) => void;
   loseHp: (amount: number) => void;
+  loseExp: (amount: number) => void; // 🩸 deduct experience on penalty
   healHp: (amount: number) => void;
 
   clearHealing: () => void;
   clearDamage: () => void;
 
-  /* ===== GOLD ===== */
+  /* ===== GOLD / ENERGY ===== */
   addGold: (amount: number) => void;
   spendGold: (amount: number) => void;
+  addEnergy: (amount: number) => void; // ⚡ new
+  spendEnergy: (amount: number) => void; // ⚡ new
 
   /* ===== DAY CONTROL ===== */
   
@@ -53,6 +60,7 @@ export const usePlayerStore = create<PlayerState>()(
       isDamaged: false,
       currentDay: 1,
     lastDate: new Date().toISOString().slice(0, 10),
+      battlesWon: { battle1: false, battle2: false, battle3: false },
 
       player: {
         name: "Player",
@@ -61,6 +69,7 @@ export const usePlayerStore = create<PlayerState>()(
         hp: 100,
         maxHp: 100,
         gold: 0,
+        energy: 0,
         avatar: avatar1,
       },
       
@@ -86,7 +95,8 @@ export const usePlayerStore = create<PlayerState>()(
 
     const finalExp = Math.floor(amount * (1 + bonusRate));
 
-    let { name, level, exp, hp, maxHp, gold, avatar } = state.player;
+    // always carry through energy from previous state
+    let { name, level, exp, hp, maxHp, gold, avatar, energy } = state.player;
 
     let leveledUp = false; // ✅ KHAI BÁO BIẾN KIỂM TRA LEVEL UP
 
@@ -108,7 +118,7 @@ export const usePlayerStore = create<PlayerState>()(
     }
 
     return {
-      player: { name, level, exp, hp, maxHp, gold, avatar },
+      player: { name, level, exp, hp, maxHp, gold, avatar, energy },
     };
   }),
 
@@ -132,6 +142,22 @@ export const usePlayerStore = create<PlayerState>()(
               ...state.player,
               hp: newHp,
               avatar: newAvatar, // ✅ CHANGE AVATAR
+            },
+          };
+        }),
+      
+      // ================= EXP LOSS =================
+      loseExp: (amount) =>
+        set((state) => {
+          if (amount <= 0) return state;
+          let { exp, level } = state.player;
+          exp = Math.max(0, exp - amount);
+          // not handling level down for simplicity
+          return {
+            player: {
+              ...state.player,
+              exp,
+              level,
             },
           };
         }),
@@ -184,6 +210,33 @@ const soundOn = useSoundStore.getState().enabled;
             gold: Math.max(0, state.player.gold - amount),
           },
         })),
+
+      // ⚡ energy handling
+      addEnergy: (amount) =>
+        set((state) => ({
+          player: {
+            ...state.player,
+            energy: state.player.energy + amount,
+          },
+        })),
+
+      spendEnergy: (amount) =>
+        set((state) => ({
+          player: {
+            ...state.player,
+            energy: Math.max(0, state.player.energy - amount),
+          },
+        })),
+
+      /* ================= BATTLE PROGRESSION ================= */
+      winBattle: (battleId) =>
+        set((state) => ({
+          battlesWon: {
+            ...state.battlesWon,
+            [battleId]: true,
+          },
+        })),
+
 
       /* ================= DAY CONTROL ================= */
 revive: () =>
@@ -264,6 +317,7 @@ revive: () =>
           isDamaged: false,
           currentDay: 1,
           lastDate: new Date().toISOString().slice(0, 10),
+          battlesWon: { battle1: false, battle2: false, battle3: false },
           player: {
             name: "Player",
             level: 1,
@@ -271,6 +325,7 @@ revive: () =>
             hp: 100,
             maxHp: 100,
             gold: 0,
+            energy: 0,
             avatar: avatar1,
           },
         })),

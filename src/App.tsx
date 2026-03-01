@@ -4,6 +4,7 @@ import { useDailyCheck } from "./hooks/useDailyCheck";
 import { soundManager } from "./utils/soundManager";
 import { useSoundStore } from "./store/useSoundStore";
 import { useLanguageStore } from "./store/useLanguageStore";
+import { useTranslation } from "./hooks/useTranslation"; // for dynamic labels
 
 import Home from "./pages/Home";
 import AddHabitNew from "./pages/AddHabitNew";
@@ -12,12 +13,17 @@ import Profile from "./pages/Profile";
 import Store from "./pages/Store";
 import Motivation from "./pages/Motivation";
 import VictoryLog from "./pages/VictoryLog";
+import Combat from "./pages/Combat"; // ⚔️ new combat page
+import Battle from "./pages/Battle"; // 🗡️ battle mini-game
+import Battle1 from "./pages/Battle1"; // 🗡️ battle mini-game 2
+import Battle2 from "./pages/Battle2"; // 🗡️ battle mini-game 3
 import Start from "./pages/Start"; 
 import NotificationList from "./components/NotificationList.tsx"; 
 
 export default function App() {
   const soundEnabled = useSoundStore((s) => s.enabled);
   const language = useLanguageStore((s) => s.language);
+  const t = useTranslation();
   const [hasStarted, setHasStarted] = useState(false); // ✅ NEW STATE
 
   // 📅 KIỂM TRA NGÀY MỚI
@@ -61,6 +67,10 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/store" element={<Store />} />
         <Route path="/motivation" element={<Motivation />} />
+        <Route path="/combat" element={<Combat />} />
+        <Route path="/combat/battle" element={<Battle />} />
+        <Route path="/combat/battle1" element={<Battle1 />} />
+        <Route path="/combat/battle2" element={<Battle2 />} />
         <Route path="/victory-log" element={<VictoryLog />} />
       </Routes>
 
@@ -69,16 +79,15 @@ export default function App() {
 
       {/* 🔽 BOTTOM NAVIGATION */}
       <nav className="bottom-nav">
-        <Link to="/motivation" className="nav-btn" title="Motivation">
+        <Link to="/motivation" className="nav-btn" title={t("nav.motivation")}>
           <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#6b4a2b">
             <path d="m80-80 200-560 360 360L80-80Zm132-132 282-100-182-182-100 282Zm370-246-42-42 224-224q32-32 77-32t77 32l24 24-42 42-24-24q-14-14-35-14t-35 14L582-458ZM422-618l-42-42 24-24q14-14 14-34t-14-34l-26-26 42-42 26 26q32 32 32 76t-32 76l-24 24Zm80 80-42-42 144-144q14-14 14-35t-14-35l-64-64 42-42 64 64q32 32 32 77t-32 77L502-538Zm160 160-42-42 64-64q32-32 77-32t77 32l64 64-42 42-64-64q-14-14-35-14t-35 14l-64 64ZM212-212Z"/>
           </svg>
         </Link>
-        <Link to="/add" className="nav-btn" title="Add Habit">
-          <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#6b4a2b">
-            <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
-          </svg>
+        <Link to="/combat" className="nav-btn" title={t("nav.combat")}>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="30px" fill="#6b4a2b"><path d="M762-96 645-212l-88 88-28-28q-23-23-23-57t23-57l169-169q23-23 57-23t57 23l28 28-88 88 116 117q12 12 12 28t-12 28l-50 50q-12 12-28 12t-28-12Zm118-628L426-270l5 4q23 23 23 57t-23 57l-28 28-88-88L198-96q-12 12-28 12t-28-12l-50-50q-12-12-12-28t12-28l116-117-88-88 28-28q23-23 57-23t57 23l4 5 454-454h160v160ZM334-583l24-23 23-24-23 24-24 23Zm-56 57L80-724v-160h160l198 198-57 56-174-174h-47v47l174 174-56 57Zm92 199 430-430v-47h-47L323-374l47 47Zm0 0-24-23-23-24 23 24 24 23Z"/></svg>
         </Link>
+        
         <Link to="/" className="nav-btn-big" title="Home">
           <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#6b4a2b">
             <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>

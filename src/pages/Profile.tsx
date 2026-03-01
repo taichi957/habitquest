@@ -119,7 +119,7 @@ export default function Profile() {
               placeholder="Player name"
             />
             <div className="profile-level">
-              {t("playerStatus.level")} {player.level} • 💰 {player.gold}G
+              {t("playerStatus.level")} {player.level} • 💰 {player.gold}G • ⚡ {player.energy}
             </div>
           </div>
         </div>
