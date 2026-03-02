@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { usePlayerStore } from '../store/usePlayerStore';
+import { useShopStore } from '../store/useShopStore';
 import { useTranslation } from '../hooks/useTranslation';
 import monsterSrc from '../assets/monster.png';
 import bgSrc from '../assets/bg.png';
 import '../css/combat.css';
 import { useNavigate } from 'react-router-dom';
+import { useNotification } from '../hooks/useNotification';
 
 interface Skill {
   name: string;
   damage: number;
   type: 'attack' | 'heal';
+  energyCost?: number;
+  goldCost?: number;
 }
 
 const skills: Skill[] = [
-  { name: '🗡', damage: 15, type: 'attack' },
-  { name: '⚔', damage: 25, type: 'attack' },
-  { name: '♥️', damage: 25, type: 'heal' },
+  { name: '🗡', damage: 15, type: 'attack', energyCost: 1 },
+  { name: '⚔', damage: 25, type: 'attack', energyCost: 1 },
+  { name: '♥️', damage: 25, type: 'heal', goldCost: 10 },
 ];
 
 const Battle: React.FC = () => {
@@ -27,7 +31,13 @@ const Battle: React.FC = () => {
   const gainExp = usePlayerStore((s) => s.gainExp);
   const addGold = usePlayerStore((s) => s.addGold);
   const winBattle = usePlayerStore((s) => s.winBattle);
+  const grantItem = useShopStore((s) => s.grantItem);
   const t = useTranslation();
+  const notify = useNotification();
+  const energy = usePlayerStore((s) => s.player.energy);
+  const gold = usePlayerStore((s) => s.player.gold);
+  const spendEnergy = usePlayerStore((s) => s.spendEnergy);
+  const spendGold = usePlayerStore((s) => s.spendGold);
  
 const navigate = useNavigate();
 
@@ -87,14 +97,22 @@ const navigate = useNavigate();
     if (monsterHP <= 0) {
   const gold = 10;
   const exp = 20;
+  const itemId = 'heal_potion';
 
-  setRewardText(t('battle.winMessage', { gold, exp }));
+  // award resources
+  setRewardText(
+    t('battle.winMessage', { gold, exp }) +
+      '\n' +
+      t('battle.itemReward', { item: t('items.healPotion.name') })
+  );
   setIsGameOver(true);
   setIsWin(true);
 
   addGold(gold);
   gainExp(exp);
   winBattle("battle1");
+  grantItem(itemId);
+  notify(t('battle.itemReward', { item: t('items.healPotion.name') }), 'success');
 }
 else if (playerHP <= 0) {
   const hpLoss = 20;
@@ -111,6 +129,21 @@ else if (playerHP <= 0) {
 
   const handleSkill = (skill: Skill) => {
     if (!isPlayerTurn || isGameOver) return;
+
+    // resource check
+    if (skill.type === 'attack') {
+      if (energy < (skill.energyCost || 1)) {
+        notify(t('notEnoughEnergy'), 'warning');
+        return;
+      }
+      spendEnergy(skill.energyCost || 1);
+    } else if (skill.type === 'heal') {
+      if (gold < (skill.goldCost || 10)) {
+        notify(t('notEnoughGold'), 'warning');
+        return;
+      }
+      spendGold(skill.goldCost || 10);
+    }
 
     // Trigger player attack animation
     setPlayerAnimating(true);
@@ -180,7 +213,12 @@ else if (playerHP <= 0) {
       <button
         key={skill.name}
         onClick={() => handleSkill(skill)}
-        disabled={!isPlayerTurn}
+        disabled={!isPlayerTurn || (skill.type === 'attack' ? energy < (skill.energyCost || 1) : gold < (skill.goldCost || 10))}
+        title={
+          skill.type === 'attack'
+            ? `${t('energyCost')}: ${skill.energyCost || 1}`
+            : `${t('playerStatus.gold')}: ${skill.goldCost || 10}`
+        }
       >
         {skill.name}
       </button>

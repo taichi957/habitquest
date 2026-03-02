@@ -16,6 +16,7 @@ type ShopState = {
 
   consumeItem: (itemId: string) => void;
   resetShop: () => void; // ✅ NO PARAMS - just reset owned items
+  grantItem: (itemId: string, qty?: number) => void; // ⚠️ reward without cost
 };
 
 export const useShopStore = create<ShopState>()(
@@ -173,6 +174,30 @@ export const useShopStore = create<ShopState>()(
           ownedItemIds: [],
           consumableQuantity: {},
         }),
+
+      /* ===== GRANT ITEM (reward or debug) ===== */
+      grantItem: (itemId, qty = 1) => {
+        const item = get().items.find((i) => i.id === itemId);
+        if (!item) return;
+
+        if (item.type === "consumable") {
+          set((state) => ({
+            ownedItemIds: [...state.ownedItemIds, itemId],
+            consumableQuantity: {
+              ...state.consumableQuantity,
+              [itemId]: (state.consumableQuantity[itemId] ?? 0) + qty,
+            },
+          }));
+        } else {
+          // buff/passive only once
+          set((state) => {
+            if (state.ownedItemIds.includes(itemId)) return {};
+            return {
+              ownedItemIds: [...state.ownedItemIds, itemId],
+            };
+          });
+        }
+      },
     }),
     {
       name: "habitquest-shop-v13",
